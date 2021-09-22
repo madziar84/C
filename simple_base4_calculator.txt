@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+/* Prosty kalkulator do dodawania w base4 */
+
+int main()
+{
+    long int base4_1;
+    long int base4_2;
+    int i=0;
+    int reszta = 0;
+    int wynik[20];
+
+    printf("Podaj pierwsza liczbe w base4 (max. 2 cyfry): \n");
+    scanf("%ld",&base4_1);
+    printf("Podaj druga liczbe w base4 (max. 2 cyfry): \n");
+    scanf("%ld",&base4_2);
+
+    while(base4_1 !=0 || base4_2 !=0)
+    {
+        wynik[i++] = (base4_1 %10 + base4_2 %10 + reszta) % 4;
+        reszta = (base4_1 %10 + base4_2 %10 + reszta) / 4;
+        base4_1 = base4_1/10;
+        base4_2 = base4_2/10;
+    }
+
+    if(reszta != 0)
+        wynik[i++] = reszta;
+        --i;
+
+    printf("Wynik dodawania: ");
+    while(i>=0)
+        printf("%d", wynik[i--]);
+
+   return 0;
+}
